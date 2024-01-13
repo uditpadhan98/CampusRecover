@@ -1,0 +1,59 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1d1d33;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 5rem 0;
+}
+
+/* .img-fluid {
+    max-width: 100%;
+    height: auto;
+} */
+
+.badge-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.badge-pill {
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+}
+
+.display-4 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.font-w-5 {
+    font-weight: 500;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1360ef;
+    border-color: #1360ef;
+}
+
+.btn {
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+}
+
+.mr-1, .mx-1 {
+    margin-right: 0.55rem;
+}
