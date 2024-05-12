@@ -1,0 +1,44 @@
+// import { useContext } from "react";
+import SearchBar from "../../components/searchBar/searchBar";
+import "./homePage.scss";
+// import { AuthContext } from "../../context/AuthContext";
+
+function HomePage() {
+
+//   const {currentUser} = useContext(AuthContext)
+
+  return (
+    <div className="homePage">
+      <div className="textContainer">
+        <div className="wrapper">
+          <h1 className="title">Lost and Found Hub: <span className="title-1">Reclaim Your Lost Items!</span></h1>
+          <p>
+            Welcome to our Lost and Found Hub! Misplaced something on campus? No worries! Easily search and claim 
+            lost items here. From keys to phones, our user-friendly interface helps you navigate through found 
+            items waiting for reunion. Let's bring your lost treasures back home.
+          </p>
+          <SearchBar />
+          <div className="boxes">
+            <div className="box">
+              <h1>1+</h1>
+              <h2>month of Experience</h2>
+            </div>
+            <div className="box">
+              <h1>20+</h1>
+              <h2>Users</h2>
+            </div>
+            <div className="box">
+              <h1>10+</h1>
+              <h2>Property Recovered</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="imgContainer">
+        <img src="/bg.png" alt="" />
+      </div>
+    </div>
+  );
+}
+
+export default HomePage;
