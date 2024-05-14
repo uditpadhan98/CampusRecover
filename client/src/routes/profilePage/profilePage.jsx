@@ -3,27 +3,35 @@
 import "./profilePage.scss";
 // import apiRequest from "../../lib/apiRequest";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
-import { Suspense, useContext } from "react";
+import { Suspense, useContext, useEffect } from "react";
 import List from "../../components/list/List";
 import Chat from "../../components/chat/Chat";
-// import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
 //   const data = useLoaderData();
 
-//   const { updateUser, currentUser } = useContext(AuthContext);
+  const { updateUser, currentUser } = useContext(AuthContext);
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-//   const handleLogout = async () => {
-//     try {
-//       await apiRequest.post("/auth/logout");
-//       updateUser(null);
-//       navigate("/");
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+  // useEffect(()=>{
+  //   if(!currentUser){
+  //     navigate("/login")
+  //   }
+  // },[currentUser,navigate])
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/auth/logout");
+      // localStorage.removeItem("user");
+      updateUser(null);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="profilePage">
       <div className="details">
@@ -37,18 +45,18 @@ function ProfilePage() {
           <div className="info">
             <span>
               Avatar:
-              <img src="" alt="" />
-              {/* <img src={currentUser.avatar || "noavatar.jpg"} alt="" /> */}
+              {/* <img src="" alt="" /> */}
+              <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
             </span>
             <span>
               Username: 
-              {/* <b>{currentUser.username}</b> */}
+              <b>{currentUser.username}</b>
             </span>
             <span>
               E-mail: 
-              {/* <b>{currentUser.email}</b> */}
+              <b>{currentUser.email}</b>
             </span>
-            <button>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </div>
           <div className="title">
             <h1>My List</h1>

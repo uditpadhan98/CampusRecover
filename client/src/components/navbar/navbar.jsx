@@ -1,14 +1,13 @@
 import { useContext, useState } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 // import { useNotificationStore } from "../../lib/notificationStore";
 
 function Navbar() {
     const [open, setOpen] = useState(false);
 
-    const user=true;
-  //   const { currentUser } = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
 
   //   const fetch = useNotificationStore((state) => state.fetch);
   //   const number = useNotificationStore((state) => state.number);
@@ -27,10 +26,10 @@ function Navbar() {
         <a href="/">Contact</a>
       </div>
       <div className="right">
-        {user ? (
+        {currentUser ? (
         <div className="user">
-          <img src="" alt="" />
-          <span>John Doe</span>
+          <img src={currentUser.avatar || "/noavatar.jpg"} alt="" />
+          <span>{currentUser.username}</span>
           <Link to='/profile' className="profile">
             <div className="notification">3</div>
             <span>Profile</span>
