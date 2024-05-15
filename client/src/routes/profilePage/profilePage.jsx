@@ -38,9 +38,9 @@ function ProfilePage() {
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <Link to="/profile/update">
+            {/* <Link to="/profile/update">
               <button>Update Profile</button>
-            </Link>
+            </Link> */}
           </div>
           <div className="info">
             <span>

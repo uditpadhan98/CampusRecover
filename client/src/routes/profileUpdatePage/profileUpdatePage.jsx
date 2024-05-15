@@ -4,12 +4,12 @@ import { AuthContext } from "../../context/AuthContext";
 // import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import UploadWidget from "../../components/uploadWidget/UploadWidget";
+import UploadWidget from "../../components/uploadWidges/UploadWidges";
 
 function ProfileUpdatePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-//   const [avatar, setAvatar] = useState([]);
+  const [avatar, setAvatar] = useState(currentUser.avatar);
 
   const navigate = useNavigate();
 
@@ -25,10 +25,10 @@ function ProfileUpdatePage() {
       const res = await axios.put(`http://localhost:8000/api/users/${currentUser.id}`, {
         username,
         email,
-        password
-        // avatar:avatar[0]
+        password,
+        avatar
       });
-      console.log(res.data);
+      // console.log(res.data);
       updateUser(res.data);
       navigate("/profile");
     } catch (err) {
@@ -69,17 +69,17 @@ function ProfileUpdatePage() {
         </form>
       </div>
       <div className="sideContainer">
-        <img src={ currentUser.avatar || "/noavatar.jpg"} alt="" className="avatar" />
-        {/* <UploadWidget
+        <img src={avatar || "/noavatar.jpg"} alt="" className="avatar" />
+        <UploadWidget
           uwConfig={{
-            cloudName: "lamadev",
-            uploadPreset: "estate",
+            cloudName: "Udit98",
+            uploadPreset: "CampusRecover",
             multiple: false,
             maxImageFileSize: 2000000,
             folder: "avatars",
           }}
-          setState={setAvatar}
-        /> */}
+          setAvatar={setAvatar}
+        />
       </div>
     </div>
   );
