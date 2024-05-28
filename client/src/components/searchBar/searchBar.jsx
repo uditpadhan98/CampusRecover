@@ -33,29 +33,20 @@ function SearchBar() {
           </button>
         ))}
       </div>
-      <form>
-        <input
-          type="text"
-          name="city"
-          placeholder="City"
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="minPrice"
-          min={0}
-          max={10000000}
-          placeholder="Min Price"
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="maxPrice"
-          min={0}
-          max={10000000}
-          placeholder="Max Price"
-          onChange={handleChange}
-        />
+      <form onSubmit={handleChange}>
+        <label htmlFor="category">Category</label>
+          <select
+            name="category"
+            id="type"
+          >
+            <option value="">Any</option>
+            <option value="electronics">Electronics</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="money">Money</option>
+            <option value="academic">Academic</option>
+            <option value="cards">Cards</option>
+            <option value="miscellaneous">Miscellaneous</option>
+          </select>
         <a href="">
         <button>
             <img src="/search.png" alt="" />

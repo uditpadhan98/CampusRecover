@@ -1,11 +1,11 @@
 import './list.scss'
 import Card from"../card/Card"
-import { listData } from '../../lib/dummyData'
 
-function List(){
+function List({propertyList}){
+  // console.log(propertyList);
   return (
     <div className='list'>
-      {listData.map(item=>(
+      {propertyList.map(item=>(
         <Card key={item.id} item={item}/>
       ))}
     </div>

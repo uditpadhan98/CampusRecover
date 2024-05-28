@@ -28,9 +28,12 @@
     }
   
     .top {
-      input {
-        width: 100%;
-      }
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      // input {
+      //   width: 100%;
+      // }
     }
   
     .bottom {

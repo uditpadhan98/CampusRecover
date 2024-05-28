@@ -3,14 +3,17 @@ import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import apiRequest from "../../lib/apiRequest.js";
-import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
+import { setLogin } from "../../redux/state";
+import { useDispatch } from "react-redux"
 
 function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const {updateUser} = useContext(AuthContext)
+  // const {updateUser} = useContext(AuthContext)
 
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,26 +21,47 @@ function Login() {
     setIsLoading(true);
     setError("");
     const formData = new FormData(e.target);
-
+    
     const username = formData.get("username");
     const password = formData.get("password");
-
+    
     try {
-      const res = await axios.post("http://localhost:8000/api/auth/login", {
-        username,
-        password,
+      const res = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
       });
+      
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message);
+      }
 
-      updateUser(res.data)
-      // localStorage.setItem("user",JSON.stringify(res.data));
+      const data = await res.json();
 
+      if (data) {
+        dispatch (
+          setLogin({
+            user: data.user,
+            token: data.token
+          })
+        )
+      }
+      
+      // updateUser(data)
+      console.log(data);
       navigate("/");
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="login">
       <div className="formContainer">

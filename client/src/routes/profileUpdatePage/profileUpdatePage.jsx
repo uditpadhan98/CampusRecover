@@ -9,25 +9,27 @@ import UploadWidget from "../../components/uploadWidges/UploadWidges";
 function ProfileUpdatePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState([]);
 
   const navigate = useNavigate();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-
+    
     const { username, email, password } = Object.fromEntries(formData);
     // console.log(username,email,password);
-
+    
     try {
       // console.log(currentUser.id);
+      // axios.defaults.withCredentials = true;
       const res = await axios.put(`http://localhost:8000/api/users/${currentUser.id}`, {
         username,
         email,
         password,
-        avatar
-      });
+        avatar:avatar[0]
+      },
+      { withCredentials: true });
       // console.log(res.data);
       updateUser(res.data);
       navigate("/profile");
@@ -69,7 +71,7 @@ function ProfileUpdatePage() {
         </form>
       </div>
       <div className="sideContainer">
-        <img src={avatar || "/noavatar.jpg"} alt="" className="avatar" />
+        <img src={avatar[0] || currentUser.avatar || "/noavatar.jpg"} alt="" className="avatar" />
         <UploadWidget
           uwConfig={{
             cloudName: "Udit98",
@@ -78,7 +80,7 @@ function ProfileUpdatePage() {
             maxImageFileSize: 2000000,
             folder: "avatars",
           }}
-          setAvatar={setAvatar}
+          setState={setAvatar}
         />
       </div>
     </div>

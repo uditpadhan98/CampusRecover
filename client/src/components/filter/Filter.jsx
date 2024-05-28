@@ -27,87 +27,32 @@ function Filter() {
   return (
     <div className="filter">
       <h1>
-        Search results for Rourkela
+        Search results for Category
         {/* <b>{searchParams.get("city")}</b> */}
       </h1>
       <div className="top">
         <div className="item">
-          <label htmlFor="city">Location</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            placeholder="City Location"
-            // onChange={handleChange}
-            // defaultValue={query.city}
-          />
-        </div>
-      </div>
-      <div className="bottom">
-        <div className="item">
-          <label htmlFor="type">Type</label>
+          <label htmlFor="category">Category</label>
           <select
-            name="type"
+            name="category"
             id="type"
             // onChange={handleChange}
             // defaultValue={query.type}
           >
-            <option value="">any</option>
-            <option value="buy">Buy</option>
-            <option value="rent">Rent</option>
+            <option value="">Any</option>
+            <option value="electronics">Electronics</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="money">Money</option>
+            <option value="academic">Academic</option>
+            <option value="cards">Cards</option>
+            <option value="miscellaneous">Miscellaneous</option>
           </select>
         </div>
-        <div className="item">
-          <label htmlFor="property">Property</label>
-          <select
-            name="property"
-            id="property"
-            // onChange={handleChange}
-            // defaultValue={query.property}
-          >
-            <option value="">any</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">House</option>
-            <option value="condo">Condo</option>
-            <option value="land">Land</option>
-          </select>
+        <div className="bottom">
+          <button>
+            <img src="/search.png" alt="" />
+          </button>
         </div>
-        <div className="item">
-          <label htmlFor="minPrice">Min Price</label>
-          <input
-            type="number"
-            id="minPrice"
-            name="minPrice"
-            placeholder="any"
-            // onChange={handleChange}
-            // defaultValue={query.minPrice}
-          />
-        </div>
-        <div className="item">
-          <label htmlFor="maxPrice">Max Price</label>
-          <input
-            type="text"
-            id="maxPrice"
-            name="maxPrice"
-            placeholder="any"
-            // onChange={handleChange}
-            // defaultValue={query.maxPrice}
-          />
-        </div>
-        <div className="item">
-          <label htmlFor="bedroom">Bedroom</label>
-          <input
-            type="text"
-            id="bedroom"
-            name="bedroom"
-            placeholder="any"
-            // onChange={handleChange}
-            // defaultValue={query.bedroom}
-          />
-        </div>
-        <button>
-          <img src="/search.png" alt="" />
-        </button>
       </div>
     </div>
   );
