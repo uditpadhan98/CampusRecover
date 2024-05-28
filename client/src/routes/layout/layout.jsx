@@ -1,8 +1,7 @@
 import "./layout.scss";
 import Navbar from "../../components/navbar/navbar";
 import { Navigate, Outlet } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
 
 function Layout() {
   return (
@@ -18,7 +17,9 @@ function Layout() {
 }
 
 function RequireAuth() {
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   
   if (!currentUser) return <Navigate to="/login" />;
   else {

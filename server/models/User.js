@@ -15,6 +15,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image:{
+      type: Array,
+      required: true,
+    },
     propertyList: {
       type: Array,
       default: [],

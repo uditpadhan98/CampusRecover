@@ -34,7 +34,7 @@ function NewPostPage() {
           description: value,
           images: images,
         };
-        console.log(requestBody);
+        // console.log(requestBody);
         const res = await fetch("http://localhost:3001/items/create", {
           method: "POST",
           headers: {
@@ -44,7 +44,7 @@ function NewPostPage() {
         });
 
         if (res.ok) {
-          console.log(res.data);
+          // console.log(res.data);
           navigate("/"+res.data.id)
         }
       } 

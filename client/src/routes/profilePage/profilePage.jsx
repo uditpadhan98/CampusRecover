@@ -1,15 +1,9 @@
-// import Chat from "../../components/chat/Chat";
-// import List from "../../components/list/List";
 import "./profilePage.scss";
-// import apiRequest from "../../lib/apiRequest";
-import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
-import { Suspense, useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {useEffect, useState } from "react";
 import List from "../../components/list/List";
-import Chat from "../../components/chat/Chat";
-import axios from "axios";
 import { setPropertyList } from "../../redux/state";
 import Loader from "../../components/loader/Loader";
-
 import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../../redux/state";
 
@@ -100,7 +94,7 @@ function ProfilePage() {
               <div className="info">
                 <span>
                   Avatar:
-                  <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
+                  <img src={currentUser.image || "noavatar.jpg"} alt="" />
                 </span>
                 <span>
                   Username:

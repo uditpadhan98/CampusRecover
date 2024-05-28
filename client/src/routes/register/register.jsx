@@ -2,16 +2,18 @@ import "./register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import UploadWidget from "../../components/uploadWidges/UploadWidges";
 
 function Register() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState([]);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("")
+    setError("");
     setIsLoading(true);
     const formData = new FormData(e.target);
 
@@ -24,6 +26,7 @@ function Register() {
         username,
         email,
         password,
+        image
       });
       console.log(res);
       navigate("/login");
@@ -46,8 +49,17 @@ function Register() {
           <Link to="/login">Do you have an account?</Link>
         </form>
       </div>
-      <div className="imgContainer">
-        <img src="/bg.png" alt="" />
+      <div className="imgContainer sideContainer">
+        <UploadWidget
+          uwConfig={{
+            multiple: false,
+            cloudName: "Udit98",
+            uploadPreset: "CampusRecover",
+            folder: "posts",
+          }}
+          setState={setImage}
+        />
+        {/* <img src="/bg.png" alt="" /> */}
       </div>
     </div>
   );

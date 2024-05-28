@@ -1,24 +1,27 @@
-import { useContext } from "react";
 import SearchBar from "../../components/searchBar/searchBar";
 import "./homePage.scss";
-import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function HomePage() {
-
-  const {currentUser} = useContext(AuthContext)
-  // console.log(currentUser);
-
   return (
     <div className="homePage">
       <div className="textContainer">
         <div className="wrapper">
-          <h1 className="title">Lost and Found Hub: <span className="title-1">Reclaim Your Lost Items!</span></h1>
+          <h1 className="title">
+            Lost and Found Hub:{" "}
+            <span className="title-1">Reclaim Your Lost Items!</span>
+          </h1>
           <p>
-            Welcome to our Lost and Found Hub! Misplaced something on campus? No worries! Easily search and claim 
-            lost items here. From keys to phones, our user-friendly interface helps you navigate through found 
-            items waiting for reunion. Let's bring your lost treasures back home.
+            Welcome to our Lost and Found Hub! Misplaced something on campus? No
+            worries! Easily search and claim lost items here. From keys to
+            phones, our user-friendly interface helps you navigate through found
+            items waiting for reunion. Let's bring your lost treasures back
+            home.
           </p>
-          <SearchBar />
+          <Link to="/list">
+            <button>Explore</button>
+          </Link>
+          {/* <SearchBar /> */}
           <div className="boxes">
             <div className="box">
               <h1>1+</h1>
