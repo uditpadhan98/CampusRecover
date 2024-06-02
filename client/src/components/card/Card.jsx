@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./card.scss";
 
 function Card({ item }) {
-  // console.log(item);
+  console.log(item);
   return (
     <div className="card">
       <Link to={`/${item._id}`} className="imageContainer">
@@ -20,20 +20,17 @@ function Card({ item }) {
         <div className="bottom">
           <div className="features">
             <div className="feature">
-              <img src="/bed.png" alt="" />
-              <span>{item.bedroom} bedroom</span>
+              <img src="/date.png" alt="" />
+              <span>{new Date(item.createdAt).toLocaleDateString()}</span>
             </div>
             <div className="feature">
-              <img src="/bath.png" alt="" />
-              <span>{item.bathroom} bathroom</span>
+              <img src="/time.png" alt="" />
+              <span>{new Date(item.createdAt).toLocaleTimeString()}</span>
             </div>
           </div>
           <div className="icons">
             <div className="icon">
-              <img src="/save.png" alt="" />
-            </div>
-            <div className="icon">
-              <img src="/chat.png" alt="" />
+              <img src="/delete.png" alt="" />
             </div>
           </div>
         </div>

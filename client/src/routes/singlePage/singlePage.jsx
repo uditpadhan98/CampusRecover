@@ -3,11 +3,10 @@ import Slider from "../../components/slider/Slider";
 import { userData } from "../../lib/dummyData";
 import Map from "../../components/map/Map";
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-// import DOMPurify from "dompurify";
+import { useEffect, useState } from "react";
+import DOMPurify from "dompurify";
 // import { useSelector } from "react-redux";
 import Loader from "../../components/loader/Loader";
-
 
 function SinglePage() {
   const [loading, setLoading] = useState(true);
@@ -15,8 +14,6 @@ function SinglePage() {
   // console.log(id);
   const [post, setPost] = useState([]);
 
-  // const [saved, setSaved] = useState(post.isSaved);
-  //   const { currentUser } = useContext(AuthContext);
   //   const navigate = useNavigate();
 
   const getListingDetails = async () => {
@@ -36,7 +33,6 @@ function SinglePage() {
 
   useEffect(() => {
     getListingDetails();
-    // setLoading(false);
   }, []);
 
   console.log(post);
@@ -66,12 +62,10 @@ function SinglePage() {
                 </div>
                 <div
                   className="bottom"
-                  //   dangerouslySetInnerHTML={{
-                  //     __html: DOMPurify.sanitize(post.description),
-                  // }}
-                >
-                  {post.description}
-                </div>
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(post.description),
+                  }}
+                ></div>
               </div>
             </div>
           </div>
@@ -80,21 +74,21 @@ function SinglePage() {
               <p className="title">General Steps</p>
               <div className="listVertical">
                 <div className="feature">
-                  <img src="/utility.png" alt="" />
+                  <img src="/verify.png" alt="" />
                   <div className="featureText">
                     <span>Verify</span>
                     <p>verify your product from images</p>
                   </div>
                 </div>
                 <div className="feature">
-                  <img src="/pet.png" alt="" />
+                  <img src="/contact.png" alt="" />
                   <div className="featureText">
                     <span>Contact</span>
                     <p>Contact the person who found this product</p>
                   </div>
                 </div>
                 <div className="feature">
-                  <img src="/fee.png" alt="" />
+                  <img src="/date.png" alt="" />
                   <div className="featureText">
                     <span>When product found</span>
                     {/* <p>Must have 3x income</p> */}
@@ -103,22 +97,24 @@ function SinglePage() {
                 </div>
               </div>
               <p className="title">Location</p>
-              <div className="mapContainer"><Map items={[post]} /></div>
+              <div className="mapContainer">
+                <Map items={[post]} />
+              </div>
               <div className="buttons">
                 <button>
-                  <img src="/chat.png" alt="" />
-                  Send a Message
+                  <img src="/delete.png" alt="" />
+                  Delete this Post
                 </button>
-                <button
-                // onClick={handleSave}
-                // style={{
-                //   backgroundColor: saved ? "#fece51" : "white",
-                // }}
+                {/* <button
+                onClick={handleSave}
+                style={{
+                  backgroundColor: saved ? "#fece51" : "white",
+                }}
                 >
                   <img src="/save.png" alt="" />
-                  {/* {saved ? "Place Saved" : "Save the Place"} */}
+                  
                   save
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
