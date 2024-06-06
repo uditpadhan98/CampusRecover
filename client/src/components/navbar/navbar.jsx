@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 function Navbar() {
   const [open, setOpen] = useState(false);
   const currentUser = useSelector((state) => state.user);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <nav>

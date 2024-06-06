@@ -7,14 +7,17 @@ import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 // import { useSelector } from "react-redux";
 import Loader from "../../components/loader/Loader";
+import { useSelector, useDispatch } from "react-redux";
 
 function SinglePage() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   // console.log(id);
   const [post, setPost] = useState([]);
+  const currentUser = useSelector((state) => state.user);
+  // console.log(currentUser._id);
 
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
 
   const getListingDetails = async () => {
     try {
@@ -34,6 +37,31 @@ function SinglePage() {
   useEffect(() => {
     getListingDetails();
   }, []);
+
+  const handleDelete=async () =>{
+    try {
+      const response = await fetch(`http://localhost:3001/items/${id}`, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ currentUserId: currentUser._id, creatorId:post.creator._id }),
+      });
+      
+      const data = await response.json();
+      // console.log(data);
+      if (data.ok) {
+        alert("Item Deleted");
+        navigate();
+      }
+      else{
+        alert("You are not authorized to delete this post");
+      }
+      // if(data)
+    } catch (err) {
+      console.log("Fetch Listing Details Failed", err.message);
+    }
+  }
 
   console.log(post);
   return (
@@ -101,7 +129,7 @@ function SinglePage() {
                 <Map items={[post]} />
               </div>
               <div className="buttons">
-                <button>
+                <button onClick={handleDelete}>
                   <img src="/delete.png" alt="" />
                   Delete this Post
                 </button>
