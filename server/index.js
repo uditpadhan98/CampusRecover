@@ -16,6 +16,9 @@ app.use(express.static("public"));
 app.use("/auth", authRoutes)
 app.use("/items", listingRoutes)
 app.use("/users", userRoutes)
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 /* MONGOOSE SETUP */
 const PORT = 3001;
