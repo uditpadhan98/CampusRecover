@@ -1,10 +1,7 @@
 import "./listPage.scss";
-// import Filter from "../../components/filter/Filter";
 import Card from "../../components/card/Card";
 import { listData } from "../../lib/dummyData";
 import Map from "../../components/map/Map";
-// import { Await, useLoaderData } from "react-router-dom";
-// import { Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../../redux/state";
 import { useState } from "react";
@@ -47,19 +44,11 @@ function ListPage() {
       <div className="listContainer">
         <div className="wrapper">
           <div className="filter">
-            <h1>
-              Search results for Category
-              {/* <b>{searchParams.get("city")}</b> */}
-            </h1>
+            <h1>Search results for Category</h1>
             <div className="top">
               <div className="item">
                 <label htmlFor="category">Category</label>
-                <select
-                  name="category"
-                  id="type"
-                  onChange={handleChange}
-                  // defaultValue={query.type}
-                >
+                <select name="category" id="type" onChange={handleChange}>
                   <option value="">Any</option>
                   <option value="electronics">Electronics</option>
                   <option value="jewelry">Jewelry</option>
@@ -76,38 +65,16 @@ function ListPage() {
               </div>
             </div>
           </div>
-          
-          {listings ? (listings.map((item) => (
-            <Card key={item.id} item={item} />
-          ))):(
-            <div>
-              Nothing
-            </div>
+
+          {listings ? (
+            listings.map((item) => <Card key={item.id} item={item} />)
+          ) : (
+            <div>Nothing</div>
           )}
-          {/* <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data.postResponse}
-              errorElement={<p>Error loading posts!</p>}
-            >
-              {(postResponse) =>
-                postResponse.data.map((post) => (
-                  <Card key={post.id} item={post} />
-                ))
-              }
-            </Await>
-          </Suspense> */}
         </div>
       </div>
       <div className="mapContainer">
-         <Map items={data} />
-        {/* <Suspense fallback={<p>Loading...</p>}>
-          <Await
-            resolve={data.postResponse}
-            errorElement={<p>Error loading posts!</p>}
-          >
-            {(postResponse) => <Map items={postResponse.data} />}
-          </Await>
-        </Suspense> */}
+        <Map items={data} />
       </div>
     </div>
   );

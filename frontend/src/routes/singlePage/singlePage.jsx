@@ -1,11 +1,9 @@
 import "./singlePage.scss";
 import Slider from "../../components/slider/Slider";
-// import { userData } from "../../lib/dummyData";
 import Map from "../../components/map/Map";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
-// import { useSelector } from "react-redux";
 import Loader from "../../components/loader/Loader";
 import { useSelector } from "react-redux";
 
@@ -17,7 +15,7 @@ function SinglePage() {
   const currentUser = useSelector((state) => state.user);
   // console.log(currentUser._id);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const getListingDetails = async () => {
     try {
@@ -38,30 +36,32 @@ function SinglePage() {
     getListingDetails();
   }, []);
 
-  const handleDelete=async () =>{
+  const handleDelete = async () => {
     try {
       const response = await fetch(`http://localhost:3001/items/${id}`, {
         method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ currentUserId: currentUser._id, creatorId:post.creator._id }),
+        body: JSON.stringify({
+          currentUserId: currentUser._id,
+          creatorId: post.creator._id,
+        }),
       });
-      
+
       const data = await response.json();
       // console.log(data);
       if (data.ok) {
         alert("Item Deleted");
         navigate();
-      }
-      else{
+      } else {
         alert("You are not authorized to delete this post");
       }
       // if(data)
     } catch (err) {
       console.log("Fetch Listing Details Failed", err.message);
     }
-  }
+  };
 
   console.log(post);
   return (
@@ -119,7 +119,7 @@ function SinglePage() {
                   <img src="/date.png" alt="" />
                   <div className="featureText">
                     <span>When product found</span>
-                    {/* <p>Must have 3x income</p> */}
+
                     <p>{new Date(post.createdAt).toLocaleString()}</p>
                   </div>
                 </div>
@@ -133,16 +133,6 @@ function SinglePage() {
                   <img src="/delete.png" alt="" />
                   Delete this Post
                 </button>
-                {/* <button
-                onClick={handleSave}
-                style={{
-                  backgroundColor: saved ? "#fece51" : "white",
-                }}
-                >
-                  <img src="/save.png" alt="" />
-                  
-                  save
-                </button> */}
               </div>
             </div>
           </div>

@@ -1,15 +1,15 @@
-import './list.scss'
-import Card from"../card/Card"
+import "./list.scss";
+import Card from "../card/Card";
 
-function List({propertyList}){
+function List({ propertyList }) {
   // console.log(propertyList);
   return (
-    <div className='list'>
-      {propertyList.map(item=>(
-        <Card key={item.id} item={item}/>
+    <div className="list">
+      {propertyList.map((item) => (
+        <Card key={item.id} item={item} />
       ))}
     </div>
-  )
+  );
 }
 
-export default List
+export default List;

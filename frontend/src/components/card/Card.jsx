@@ -28,11 +28,6 @@ function Card({ item }) {
               <span>{new Date(item.createdAt).toLocaleTimeString()}</span>
             </div>
           </div>
-          {/* <div className="icons">
-            <div className="icon">
-              <img src="/delete.png" alt="" />
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

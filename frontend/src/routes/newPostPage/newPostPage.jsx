@@ -2,56 +2,55 @@ import { useState } from "react";
 import "./newPostPage.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import UploadWidget from "../../components/uploadWidges/UploadWidges";
-// import axios from "axios";
+import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function NewPostPage() {
-    const [value, setValue] = useState("");
-    const [images, setImages] = useState([]);
-    const [error, setError] = useState("");
+  const [value, setValue] = useState("");
+  const [images, setImages] = useState([]);
+  const [error, setError] = useState("");
 
-    const creatorId = useSelector((state) => state.user._id);
-    // console.log(creatorId);
+  const creatorId = useSelector((state) => state.user._id);
+  // console.log(creatorId);
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const inputs = Object.fromEntries(formData);
-      // console.log(inputs);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const inputs = Object.fromEntries(formData);
+    // console.log(inputs);
 
-      try {
-        const requestBody = {
-          creator: creatorId,
-          category: inputs.category,
-          longitude: inputs.longitude,
-          latitude: inputs.latitude,
-          address: inputs.address,
-          title: inputs.title,
-          description: value,
-          images: images,
-        };
-        // console.log(requestBody);
-        const res = await fetch("http://localhost:3001/items/create", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        });
+    try {
+      const requestBody = {
+        creator: creatorId,
+        category: inputs.category,
+        longitude: inputs.longitude,
+        latitude: inputs.latitude,
+        address: inputs.address,
+        title: inputs.title,
+        description: value,
+        images: images,
+      };
+      // console.log(requestBody);
+      const res = await fetch("http://localhost:3001/items/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
 
-        if (res.ok) {
-          // console.log(res.data);
-          navigate("/"+res.data.id)
-        }
-      } 
-      catch (err) {
-        console.log("Publish Listing failed", err.message);
+      if (res.ok) {
+        // console.log(res.data);
+        navigate("/" + res.data.id);
       }
-    };
+    } catch (err) {
+      setError(err.message);
+      console.log("Publish Listing failed", err.message);
+    }
+  };
   return (
     <div className="newPostPage">
       <div className="formContainer">
@@ -105,7 +104,7 @@ function NewPostPage() {
             uploadPreset: "CampusRecover",
             folder: "posts",
           }}
-            setState={setImages}
+          setState={setImages}
         />
       </div>
     </div>

@@ -1,17 +1,12 @@
 import { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import apiRequest from "../../lib/apiRequest.js";
-// import { AuthContext } from "../../context/AuthContext";
 import { setLogin } from "../../redux/state";
 import { useDispatch } from "react-redux"
 
 function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  // const {updateUser} = useContext(AuthContext)
 
   const dispatch = useDispatch()
   const navigate = useNavigate();

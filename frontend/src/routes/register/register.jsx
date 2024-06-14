@@ -2,7 +2,7 @@ import "./register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import UploadWidget from "../../components/uploadWidges/UploadWidges";
+import UploadWidget from "../../components/uploadWidget/UploadWidget";
 
 function Register() {
   const [error, setError] = useState("");

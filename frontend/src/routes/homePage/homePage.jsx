@@ -1,4 +1,3 @@
-// import SearchBar from "../../components/searchBar/searchBar";
 import "./homePage.scss";
 import { Link } from "react-router-dom";
 
@@ -21,7 +20,7 @@ function HomePage() {
           <Link to="/list">
             <button>Explore</button>
           </Link>
-          {/* <SearchBar /> */}
+
           <div className="boxes">
             <div className="box">
               <h1>1+</h1>
