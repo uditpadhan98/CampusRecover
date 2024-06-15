@@ -5,6 +5,7 @@ import "react-quill/dist/quill.snow.css";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { BASE_URL } from "../../Helper";
 
 function NewPostPage() {
   const [value, setValue] = useState("");
@@ -34,7 +35,7 @@ function NewPostPage() {
         images: images,
       };
       // console.log(requestBody);
-      const res = await fetch("http://localhost:3001/items/create", {
+      const res = await fetch(`${BASE_URL}/items/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

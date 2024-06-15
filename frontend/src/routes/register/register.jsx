@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
+import { BASE_URL } from "../../Helper";
 
 function Register() {
   const [error, setError] = useState("");
@@ -22,7 +23,7 @@ function Register() {
     const password = formData.get("password");
 
     try {
-      const res = await axios.post("http://localhost:3001/auth/register", {
+      const res = await axios.post(`${BASE_URL}/auth/register`, {
         username,
         email,
         password,

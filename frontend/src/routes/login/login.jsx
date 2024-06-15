@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { setLogin } from "../../redux/state";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
+import { BASE_URL } from "../../Helper";
 
 function Login() {
   const [error, setError] = useState("");
@@ -21,7 +22,7 @@ function Login() {
     const password = formData.get("password");
     
     try {
-      const res = await fetch("http://localhost:3001/auth/login", {
+      const res = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {

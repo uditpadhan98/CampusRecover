@@ -6,6 +6,7 @@ import { setPropertyList } from "../../redux/state";
 import Loader from "../../components/loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../../redux/state";
+import { BASE_URL } from "../../Helper";
 
 function ProfilePage() {
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ function ProfilePage() {
   const getPropertyList = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${currentUser._id}/items`,
+        `${BASE_URL}/users/${currentUser._id}/items`,
         {
           method: "GET",
         }

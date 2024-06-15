@@ -5,6 +5,7 @@ import Map from "../../components/map/Map";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../../redux/state";
 import { useState } from "react";
+import { BASE_URL } from "../../Helper";
 
 function ListPage() {
   const data = listData;
@@ -23,8 +24,8 @@ function ListPage() {
     try {
       const response = await fetch(
         selectedCategory !== "All"
-          ? `http://localhost:3001/items?category=${selectedCategory}`
-          : "http://localhost:3001/items",
+          ? `${BASE_URL}/items?category=${selectedCategory}`
+          : `${BASE_URL}/items`,
         {
           method: "GET",
         }

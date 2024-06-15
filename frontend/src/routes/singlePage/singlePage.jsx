@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import Loader from "../../components/loader/Loader";
 import { useSelector } from "react-redux";
+import { BASE_URL } from "../../Helper";
 
 function SinglePage() {
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ function SinglePage() {
 
   const getListingDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/items/${id}`, {
+      const response = await fetch(`${BASE_URL}/items/${id}`, {
         method: "GET",
       });
 
@@ -38,7 +39,7 @@ function SinglePage() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/items/${id}`, {
+      const response = await fetch(`${BASE_URL}/items/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
