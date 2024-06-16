@@ -23,7 +23,7 @@ function HomePage() {
 
           <div className="boxes">
             <div className="box">
-              <h1>1+</h1>
+              <h1>27+</h1>
               <h2>month of Experience</h2>
             </div>
             <div className="box">
@@ -31,7 +31,7 @@ function HomePage() {
               <h2>Users</h2>
             </div>
             <div className="box">
-              <h1>10+</h1>
+              <h1>34+</h1>
               <h2>Property Recovered</h2>
             </div>
           </div>

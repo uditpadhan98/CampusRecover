@@ -6,6 +6,7 @@ import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BASE_URL } from "../../Helper";
+import { toast } from "react-toastify";
 
 function NewPostPage() {
   const [value, setValue] = useState("");
@@ -45,11 +46,25 @@ function NewPostPage() {
 
       if (res.ok) {
         // console.log(res.data);
+        toast.success("Item added successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored",
+        });
         navigate("/profile");
       }
     } catch (err) {
       setError(err.message);
       console.log("Publish Listing failed", err.message);
+      toast.error("Publish Listing failed", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "colored",
+      });
     }
   };
   return (

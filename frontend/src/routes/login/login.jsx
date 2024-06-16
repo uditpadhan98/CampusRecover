@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { setLogin } from "../../redux/state";
 import { useDispatch } from "react-redux";
 import { BASE_URL } from "../../Helper";
+import { toast } from "react-toastify";
 
 function Login() {
   const [error, setError] = useState("");
@@ -49,9 +50,23 @@ function Login() {
       }
       
       // updateUser(data)
-      console.log(data);
+      // console.log(data);
+      toast.success("Logged-In successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "colored",
+      });
       navigate("/");
     } catch (err) {
+      toast.error(err.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "colored",
+      });
       setError(err.message);
     } finally {
       setIsLoading(false);

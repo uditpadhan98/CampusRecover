@@ -7,6 +7,7 @@ import DOMPurify from "dompurify";
 import Loader from "../../components/loader/Loader";
 import { useSelector } from "react-redux";
 import { BASE_URL } from "../../Helper";
+import { toast } from "react-toastify";
 
 function SinglePage() {
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ function SinglePage() {
   // console.log(id);
   const [post, setPost] = useState([]);
   const currentUser = useSelector((state) => state.user);
-  // console.log(currentUser._id);
+  // console.log(currentUser);
 
   const navigate = useNavigate();
 
@@ -38,6 +39,7 @@ function SinglePage() {
   }, []);
 
   const handleDelete = async () => {
+    // console.log(currentUser._id,post.creator._id)
     try {
       const response = await fetch(`${BASE_URL}/items/${id}`, {
         method: "DELETE",
@@ -52,19 +54,39 @@ function SinglePage() {
 
       const data = await response.json();
       // console.log(data);
-      if (data.ok) {
-        alert("Item Deleted");
-        navigate();
+      if (data.status === 200) {
+        toast.success("Item Deleted successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored",
+        });
+        navigate("/profile");
       } else {
-        alert("You are not authorized to delete this post");
+        toast.error("You are not authorized to delete this post", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored",
+        });
       }
       // if(data)
     } catch (err) {
+      toast.info("Please Login to access this features", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "colored",
+      });
+      navigate("/login");
       console.log("Fetch Listing Details Failed", err.message);
     }
   };
 
-  console.log(post);
+  // console.log(post);
   return (
     <div className="singlePage">
       {loading ? (

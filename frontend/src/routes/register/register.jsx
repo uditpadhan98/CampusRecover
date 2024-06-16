@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { BASE_URL } from "../../Helper";
+import { toast } from "react-toastify";
 
 function Register() {
   const [error, setError] = useState("");
@@ -29,7 +30,14 @@ function Register() {
         password,
         image
       });
-      console.log(res);
+      // console.log(res);
+      toast.success("Account created successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "colored",
+      });
       navigate("/login");
     } catch (err) {
       setError(err.response.data.message);
