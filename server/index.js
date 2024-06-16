@@ -8,7 +8,7 @@ const authRoutes = require("./routes/auth.js")
 const listingRoutes = require("./routes/listing.js")
 const userRoutes = require("./routes/user.js")
 
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
