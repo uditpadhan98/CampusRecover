@@ -89,15 +89,15 @@ router.get("/:listingId", async (req, res) => {
   }
 });
 
-router.delete("/:listingId", async (req, res) => {
+router.delete("/:deleteId", async (req, res) => {
   try {
-    const {listingId}=req.params;
-    const { currentUserId } = req.body;
-    const {creatorId} = req.body;
+    const {deleteId}=req.params;
+    const { currentUserId,creatorId } = req.body;
     // console.log(currentUserId,creatorId);
     // console.log(listingId);
-    if(currentUserId==creatorId){
-      await Listing.findByIdAndDelete(listingId);
+    if(currentUserId===creatorId){
+      await Listing.findByIdAndDelete(deleteId);
+      return res.status(200).json({ message: "Item deleted successfully.",status:200 });
       // console.log()
     }
     if(currentUserId!=creatorId){
