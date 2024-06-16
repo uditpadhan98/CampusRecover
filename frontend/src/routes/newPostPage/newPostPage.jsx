@@ -45,7 +45,7 @@ function NewPostPage() {
 
       if (res.ok) {
         // console.log(res.data);
-        navigate("/" + res.data.id);
+        navigate("/profile");
       }
     } catch (err) {
       setError(err.message);

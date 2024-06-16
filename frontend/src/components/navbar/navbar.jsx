@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Navbar() {
@@ -11,15 +11,15 @@ function Navbar() {
   return (
     <nav>
       <div className="left">
-        <a href="/" className="logo">
+        <NavLink to="/" className="logo">
           <img src="/logo.png" alt="" />
           <span>
             <span className="logo-1">Campus</span>Recover
           </span>
-        </a>
-        <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
+        </NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">About</NavLink>
+        <NavLink to="/">Contact</NavLink>
       </div>
       <div className="right">
         {currentUser ? (
@@ -32,10 +32,10 @@ function Navbar() {
           </div>
         ) : (
           <>
-            <a href="/login">Sign in</a>
-            <a href="/register" className="register">
+            <NavLink to="/login">Sign in</NavLink>
+            <NavLink to="/register" className="register">
               Sign up
-            </a>
+            </NavLink>
           </>
         )}
 
@@ -47,11 +47,11 @@ function Navbar() {
           />
         </div>
         <div className={open ? "menu active" : "menu"}>
-          <a href="/">Home</a>
-          <a href="/">About</a>
-          <a href="/">Contact</a>
-          <a href="/">Sign in</a>
-          <a href="/">Sign up</a>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">About</NavLink>
+          <NavLink to="/">Contact</NavLink>
+          <NavLink to="/login">Sign in</NavLink>
+          <NavLink to="/register">Sign up</NavLink>
         </div>
       </div>
     </nav>
