@@ -15,7 +15,6 @@ function ProfilePage() {
 
   // console.log(currentUser,propertyList);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const getPropertyList = async () => {
@@ -50,8 +49,7 @@ function ProfilePage() {
       ) : (
         <>
           <div className="details">
-            <div className="wrapper">
-              
+            <div className="wrapper">  
               <div className="title">
                 <h1>My List</h1>
                 <Link to="/add">

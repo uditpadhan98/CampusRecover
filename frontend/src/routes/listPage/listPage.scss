@@ -16,6 +16,17 @@
       gap: 50px;
       overflow-y: scroll;
       padding-bottom: 50px;
+
+      .noData{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        img{
+          height: 25rem;
+        }
+      }
+      
       .filter {
         display: flex;
         flex-direction: column;

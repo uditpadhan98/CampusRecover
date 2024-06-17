@@ -1,6 +1,5 @@
 import "./listPage.scss";
 import Card from "../../components/card/Card";
-import { listData } from "../../lib/dummyData";
 import Map from "../../components/map/Map";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../../redux/state";
@@ -8,21 +7,17 @@ import { useState } from "react";
 import { BASE_URL } from "../../Helper";
 
 function ListPage() {
-  const data = listData;
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const listings = useSelector((state) => state.listings);
   // console.log(listings);
 
   const handleChange = (e) => {
     setSelectedCategory(e.target.value);
-    console.log(selectedCategory);
   };
 
   const getFeedListings = async () => {
-    setIsLoading(true);
     try {
       const response = await fetch(
         selectedCategory !== "All"
@@ -34,13 +29,12 @@ function ListPage() {
       );
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       dispatch(setListings({ listings: data }));
+      // console.log(listings);
       // setLoading(false);
     } catch (err) {
       console.log("Fetch Listings Failed", err.message);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -54,7 +48,7 @@ function ListPage() {
               <div className="item">
                 <label htmlFor="category">Category</label>
                 <select name="category" id="type" onChange={handleChange}>
-                  <option value="">Any</option>
+                  <option value="All">Any</option>
                   <option value="electronics">Electronics</option>
                   <option value="jewelry">Jewelry</option>
                   <option value="money">Money</option>
@@ -63,23 +57,25 @@ function ListPage() {
                   <option value="miscellaneous">Miscellaneous</option>
                 </select>
               </div>
-              <div className="bottom" disabled={isLoading}>
-                <button onClick={getFeedListings} >
+              <div className="bottom">
+                <button onClick={getFeedListings}>
                   <img src="/search.png" alt="" />
                 </button>
               </div>
             </div>
           </div>
 
-          {listings ? (
+          {listings.length ? (
             listings.map((item) => <Card key={item.id} item={item} />)
           ) : (
-            <div>Nothing</div>
+            <div className="noData">
+              <img src="/No-data.png" alt="" />
+            </div>
           )}
         </div>
       </div>
       <div className="mapContainer">
-        <Map items={data} />
+        <Map items={listings} />
       </div>
     </div>
   );

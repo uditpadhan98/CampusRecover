@@ -1,5 +1,15 @@
-.list{
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .noData{
     display: flex;
-    flex-direction: column;
-    gap: 50px;
+    justify-content: center;
+    align-items: center;
+
+    img{
+      height: 25rem;
+    }
   }
+}
