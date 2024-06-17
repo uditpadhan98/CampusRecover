@@ -11,6 +11,7 @@ function ListPage() {
   const data = listData;
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const listings = useSelector((state) => state.listings);
   // console.log(listings);
@@ -21,6 +22,7 @@ function ListPage() {
   };
 
   const getFeedListings = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         selectedCategory !== "All"
@@ -37,6 +39,8 @@ function ListPage() {
       // setLoading(false);
     } catch (err) {
       console.log("Fetch Listings Failed", err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -59,8 +63,8 @@ function ListPage() {
                   <option value="miscellaneous">Miscellaneous</option>
                 </select>
               </div>
-              <div className="bottom">
-                <button onClick={getFeedListings}>
+              <div className="bottom" disabled={isLoading}>
+                <button onClick={getFeedListings} >
                   <img src="/search.png" alt="" />
                 </button>
               </div>

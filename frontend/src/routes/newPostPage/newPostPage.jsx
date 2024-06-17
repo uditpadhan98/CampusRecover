@@ -12,6 +12,7 @@ function NewPostPage() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const creatorId = useSelector((state) => state.user._id);
   // console.log(creatorId);
@@ -20,6 +21,7 @@ function NewPostPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData(e.target);
     const inputs = Object.fromEntries(formData);
     // console.log(inputs);
@@ -65,6 +67,8 @@ function NewPostPage() {
         closeOnClick: true,
         theme: "colored",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -104,7 +108,7 @@ function NewPostPage() {
               <label htmlFor="longitude">Longitude</label>
               <input id="longitude" name="longitude" type="text" />
             </div>
-            <button className="sendButton">Add</button>
+            <button className="sendButton" disabled={isLoading}>Add</button>
             {error && <span>error</span>}
           </form>
         </div>

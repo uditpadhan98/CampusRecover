@@ -10,6 +10,7 @@ import { BASE_URL } from "../../Helper";
 import { toast } from "react-toastify";
 
 function SinglePage() {
+  const [isLoading, setIsLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   // console.log(id);
@@ -40,6 +41,7 @@ function SinglePage() {
 
   const handleDelete = async () => {
     // console.log(currentUser._id,post.creator._id)
+    setIsLoading(true);
     try {
       const response = await fetch(`${BASE_URL}/items/${id}`, {
         method: "DELETE",
@@ -83,6 +85,8 @@ function SinglePage() {
       });
       navigate("/login");
       console.log("Fetch Listing Details Failed", err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -152,7 +156,7 @@ function SinglePage() {
                 <Map items={[post]} />
               </div>
               <div className="buttons">
-                <button onClick={handleDelete}>
+                <button onClick={handleDelete} disabled={isLoading}>
                   <img src="/delete.png" alt="" />
                   Delete this Post
                 </button>

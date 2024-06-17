@@ -18,7 +18,7 @@ function HomePage() {
             home.
           </p>
           <Link to="/list">
-            <button>Explore</button>
+            <button>Explore Items</button>
           </Link>
 
           <div className="boxes">
