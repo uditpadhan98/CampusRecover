@@ -31,7 +31,7 @@ function ListPage() {
       const data = await response.json();
       // console.log(data);
       dispatch(setListings({ listings: data }));
-      // console.log(listings);
+      console.log(listings);
       // setLoading(false);
     } catch (err) {
       console.log("Fetch Listings Failed", err.message);

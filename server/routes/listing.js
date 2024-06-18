@@ -56,6 +56,7 @@ router.post("/create", async (req, res) => {
 /* GET lISTINGS BY CATEGORY */
 router.get("/", async (req, res) => {
   const qCategory = req.query.category;
+  // console.log(qCategory);
 
   try {
     let listings;
@@ -91,17 +92,19 @@ router.get("/:listingId", async (req, res) => {
 
 router.delete("/:deleteId", async (req, res) => {
   try {
-    const {deleteId}=req.params;
-    const { currentUserId,creatorId } = req.body;
+    const { deleteId } = req.params;
+    const { currentUserId, creatorId } = req.body;
     // console.log(currentUserId,creatorId);
     // console.log(listingId);
-    if(currentUserId===creatorId){
+    if (currentUserId === creatorId) {
       await Listing.findByIdAndDelete(deleteId);
-      return res.status(200).json({ message: "Item deleted successfully.",status:200 });
+      return res
+        .status(200)
+        .json({ message: "Item deleted successfully.", status: 200 });
       // console.log()
     }
-    if(currentUserId!=creatorId){
-      res.status(404).json({ message:"You are not authorized." });
+    if (currentUserId != creatorId) {
+      res.status(404).json({ message: "You are not authorized." });
     }
   } catch (err) {
     res
