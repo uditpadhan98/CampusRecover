@@ -6,14 +6,14 @@ import 'leaflet/dist/leaflet.css';
 
 const customIcon = new L.Icon({
   iconUrl: '/marker.png',
-  iconSize: [25, 35],
+  iconSize: [25, 45],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41]
 });
 
 function Pin({ item }) {
-  console.log(item.images[0])
+  // console.log(item.images[0])
   return (
     <Marker position={[item.latitude, item.longitude]} icon={customIcon}>
       <Popup>

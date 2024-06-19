@@ -24,7 +24,9 @@ function Navbar() {
       <div className="right">
         {currentUser ? (
           <div className="user">
-            <img src={currentUser.image || "/noavatar.jpg"} alt="" />
+            {currentUser.image.length ? (<img src={currentUser.image} alt="" />):
+            (<img src="/noavatar.jpg" alt="" />)}
+            {/* <img src={currentUser.image || "/noavatar.jpg"} alt="" /> */}
             <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
               <span>Profile</span>

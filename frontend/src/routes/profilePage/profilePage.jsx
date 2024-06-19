@@ -68,7 +68,10 @@ function ProfilePage() {
               <div className="info">
                 <span>
                   Avatar:
-                  <img src={currentUser.image || "noavatar.jpg"} alt="" />
+                  {currentUser.image.length ? (<img src={currentUser.image} alt="" />):(
+                    <img src="noavatar.jpg" alt="" />
+                  )}
+                  {/* <img src={currentUser.image || "noavatar.jpg"} alt="" /> */}
                 </span>
                 <span>
                   Username:

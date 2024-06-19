@@ -90,7 +90,7 @@ function SinglePage() {
     }
   };
 
-  // console.log(post);
+  // console.log(post.creator.image);
   return (
     <div className="singlePage">
       {loading ? (
@@ -111,7 +111,10 @@ function SinglePage() {
                     <div className="price"> {post.creator.email}</div>
                   </div>
                   <div className="user">
-                    <img src={post.creator.image} alt="" />
+                    {post.creator.image.length ? (<img src={post.creator.image} alt="" />) :(
+                      <img src="/noavatar.jpg" alt="" />
+                    )}
+                    {/* <img src="/noavatar.jpg" alt="" /> */}
                     <span>{post.creator.username}</span>
                   </div>
                 </div>

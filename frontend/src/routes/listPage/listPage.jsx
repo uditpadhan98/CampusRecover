@@ -3,12 +3,14 @@ import Card from "../../components/card/Card";
 import Map from "../../components/map/Map";
 import { useDispatch, useSelector } from "react-redux";
 import { setListings } from "../../redux/state";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BASE_URL } from "../../Helper";
+import EmptyMap from "../../components/map/EmptyMap";
 
 function ListPage() {
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const listings = useSelector((state) => state.listings);
   // console.log(listings);
@@ -17,7 +19,29 @@ function ListPage() {
     setSelectedCategory(e.target.value);
   };
 
+  const getAllList =async()=>{
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${BASE_URL}/items`,
+        {
+          method: "GET",
+        }
+      );
+
+      const data = await response.json();
+      dispatch(setListings({ listings: data }));
+      setIsLoading(false);
+    } catch (err) {
+      console.log("Fetch Listings Failed", err.message);
+    }
+  }
+
+  useEffect(()=>{
+    getAllList();
+  },[]);
+
   const getFeedListings = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         selectedCategory !== "All"
@@ -31,8 +55,7 @@ function ListPage() {
       const data = await response.json();
       // console.log(data);
       dispatch(setListings({ listings: data }));
-      console.log(listings);
-      // setLoading(false);
+      setIsLoading(false);
     } catch (err) {
       console.log("Fetch Listings Failed", err.message);
     }
@@ -58,7 +81,7 @@ function ListPage() {
                 </select>
               </div>
               <div className="bottom">
-                <button onClick={getFeedListings}>
+                <button onClick={getFeedListings} disabled={isLoading}>
                   <img src="/search.png" alt="" />
                 </button>
               </div>
@@ -75,7 +98,10 @@ function ListPage() {
         </div>
       </div>
       <div className="mapContainer">
-        <Map items={listings} />
+        {listings.length ? (<Map items={listings} />):(
+          <EmptyMap/>
+        )}
+        {/* <Map items={listings} /> */}
       </div>
     </div>
   );
