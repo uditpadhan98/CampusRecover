@@ -1,6 +1,12 @@
+@import "../../responsive.scss";
+
 .registerPage {
     height: 100%;
     display: flex;
+
+    @include sm{
+      flex-direction: column-reverse;
+    }
   
     .formContainer {
       flex: 3;
@@ -54,6 +60,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @include sm{
+        background-color: white;
+      }
+      
       img {
         width: 100%;
       }

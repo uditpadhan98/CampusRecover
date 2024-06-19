@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import "./uploadWidget.scss";
 
 // Create a context to manage the script loading state
 const CloudinaryScriptContext = createContext();
