@@ -88,7 +88,7 @@ function ListPage() {
             </div>
           </div>
 
-          {listings.length ? (
+          {listings ? (
             listings.map((item) => <Card key={item.id} item={item} />)
           ) : (
             <div className="noData">
@@ -98,7 +98,7 @@ function ListPage() {
         </div>
       </div>
       <div className="mapContainer">
-        {listings.length ? (<Map items={listings} />):(
+        {listings ? (<Map items={listings} />):(
           <EmptyMap/>
         )}
         {/* <Map items={listings} /> */}
