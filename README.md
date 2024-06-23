@@ -8,6 +8,7 @@ CampusRecover is a web application built using the MERN stack (MongoDB, Express.
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Future Development](#future-development)
 - [Contributing](#contributing)
 
 ## Features
@@ -107,6 +108,14 @@ The application should now be running on `http://localhost:3000`.
 2. Post details of any items you have found on campus.
 3. Browse or search for items you have lost.
 4. Contact the poster to recover your lost item.
+
+## Future Development
+
+-Mobile Responsiveness: Enhance the mobile version of the application to ensure a seamless and user-friendly experience on smaller devices.
+-Admin Panel: Develop an admin panel for better management of posts and users.
+-Advanced Search Filters: Add advanced search filters to improve the item search experience.
+-User Ratings: Introduce a user rating system to build trust within the community.
+-Chat Functionality: Implement a chat system for direct communication between users.
 
 ## Contributing
 
